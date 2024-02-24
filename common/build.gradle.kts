@@ -19,19 +19,19 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
-                implementation(libs.ktor.client.core)
+//                implementation(libs.ktor.client.core)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.datetime)
             }
         }
         val jvmMain by getting {
             dependencies {
-                implementation(libs.ktor.client.jvm)
+//                implementation(libs.ktor.client.jvm)
             }
         }
         val jsMain by getting {
             dependencies {
-                implementation(libs.ktor.client.js)
+//                implementation(libs.ktor.client.js)
                 implementation("org.jetbrains.kotlinx:kotlinx-html:0.10.1")
             }
         }

@@ -1,23 +1,38 @@
 package me.vince
 
-import io.ktor.client.fetch.*
 import kotlinx.browser.document
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.html.dom.append
-import kotlinx.html.js.h1
-import org.w3c.fetch.Response
+import kotlinx.html.id
+import kotlinx.html.js.*
 
+@OptIn(DelicateCoroutinesApi::class)
 fun main() {
     val greetings = Greeting().greeting()
     println(greetings)
+
+    val chuckNorrisFactService = ChuckNorrisFactService("http://localhost:8888/api")
+
     document.getElementById("app")?.append {
         h1 { +greetings }
-    }
 
-    fetch("http://localhost:8888/api")
-        .
-        .then(Response::json)
-        .then {
-            val product = it as Product?
-            println(product?.name)
+        h1 { +helloModule() }
+
+        ul { id = "factsElement" }
+
+        button {
+            +"Chuck Norris' Fact"
+            onClickFunction = {
+                GlobalScope.launch {
+                    val fact = chuckNorrisFactService.fetchFact()
+                    document.getElementById("factsElement")
+                        ?.append {
+                            li { +fact.value }
+                        }
+                }
+            }
         }
+    }
 }
