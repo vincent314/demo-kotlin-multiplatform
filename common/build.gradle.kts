@@ -19,14 +19,17 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(libs.kotlinx.coroutines.core)
-//                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.core)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.datetime)
             }
         }
         val jvmMain by getting {
             dependencies {
-//                implementation(libs.ktor.client.jvm)
+                implementation(libs.ktor.client.jvm)
+                implementation("io.ktor:ktor-client-java:2.2.4")
+                implementation("io.ktor:ktor-client-content-negotiation:2.2.4")
+                implementation("io.ktor:ktor-serialization-kotlinx-json:2.2.4")
             }
         }
         val jsMain by getting {
